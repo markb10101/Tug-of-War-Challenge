@@ -69,7 +69,6 @@
             width: 10vw;
             max-width: 100px;
             transform-origin: center bottom;
-            /* transform: translate(-50px, 0px) rotate(-10deg); */
             border-radius: 10% 10% 5% 5%;
         }
         .face {
@@ -79,8 +78,7 @@
             font-size: 2.5rem;
             color: grey;
             text-shadow: 2px 0 6px black;
-            padding: 10px 50%;
-            border-radius: 40%;
+            padding: 0 50%;
             transform: rotate(90deg);
         }
         #base {
@@ -160,7 +158,7 @@
     
         </div>
 
-        <div id="instructions"><h2>HOW TO PLAY:</h2><p>Dragging down the ancient Moai head to display in your museum back home will bring big bucks and royal favour but make sure you type faster than your rival, or you'll be sailing home empty-handed!</p><p>Type the displayed sequence of keyboard characters to drag the Moai towards your curator - be quick but don't mistype!</p></div>
+        <div id="instructions"><h2>HOW TO PLAY:</h2><p>Dragging down the ancient Moai head to display in your museum back home will bring big bucks and royal favour but make sure you type faster than your rival, or you'll be sailing home empty-handed!</p><p>Type the  sequence of keyboard characters to drag the Moai towards your curator - be quick but don't mistype!</p></div>
 
     </div>
 
@@ -171,6 +169,10 @@
         const totem = document.getElementById("totem");
         const playerOneWinEl = document.getElementsByClassName("p1wins");
         const playerTwoWinEl = document.getElementsByClassName("p2wins");
+        const faceFeatures = document.getElementsByClassName("face");
+
+        //select a random face
+        makeFace(Math.floor(Math.random() * 10));
 
         let playerTwoScore = 0;
         let playerOneScore = 0;
@@ -285,21 +287,59 @@
             playerOneWinEl[0].innerHTML = "WINS: " + playerOneScore;
             playerTwoWinEl[0].innerHTML = "WINS: " + playerTwoScore;
 
-            alert("Player "+winner+" claimed the Moai");
+            alert("Player "+winner+" claimed the Moai!\nGO FOR THE NEXT MOAI!!!");
 
             resetGame();
         }
     
         function resetGame() {
 
+            makeFace(Math.floor(Math.random() * 10));
+
             positionOfMoai = 0;
             moaiHasFallen = false;
+
             playerOnePrevKey = "Z";
             playerTwoPrevKey = ">";
 
             moveMoai(0);
             checkInput(0);
 
+        }
+
+        function makeFace(faceType){
+            switch(faceType) {
+                case 0:
+                    faceFeatures[0].innerHTML = "=:¬O-";
+                break;
+                case 1:
+                    faceFeatures[0].innerHTML = "{:¬]-";
+                break;
+                case 2:
+                    faceFeatures[0].innerHTML = ">;¬( ";
+                break;
+                case 3:
+                    faceFeatures[0].innerHTML = "|:'o) ";
+                break;
+                case 4:
+                    faceFeatures[0].innerHTML = "}:¬,|";
+                break;
+                case 5:
+                    faceFeatures[0].innerHTML = "=:>O-";
+                break;
+                case 6:
+                    faceFeatures[0].innerHTML = "$:-)-";
+                break;
+                case 7:
+                    faceFeatures[0].innerHTML = ">:¬(-";
+                break;
+                case 8:
+                    faceFeatures[0].innerHTML = "~:¬E";
+                break;
+                case 9:
+                    faceFeatures[0].innerHTML = "=}:¬o";
+                break;
+            }
         }
 
 
